@@ -246,13 +246,13 @@ SECURITY DEFINER
 STABLE
 AS $$
   SELECT EXISTS (
-    SELECT 1 FROM users current_user
-    WHERE current_user.id = auth.uid()
+    SELECT 1 FROM users cu
+    WHERE cu.id = auth.uid()
     AND (
-      current_user.role = 'super_admin'
+      cu.role = 'super_admin'
       OR (
-        current_user.role IN ('super_admin', 'admin')
-        AND current_user.organization_id = (
+        cu.role IN ('super_admin', 'admin')
+        AND cu.organization_id = (
           SELECT organization_id FROM users WHERE id = target_user_id
         )
       )

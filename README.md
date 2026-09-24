@@ -2,6 +2,16 @@
 
 A modern, cloud-native CRM application inspired by BusinessNext CRM, built for banking and financial services.
 
+## 🔐 Authentication & User Management
+
+CloudCRM includes complete authentication with Supabase Auth and role-based access control.
+
+**Quick Start:**
+1. See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed authentication setup
+2. Or follow the steps below for a quick setup
+
+**Demo Mode:** The app works without Supabase using demo credentials (click any demo button on login page).
+
 ## 🗄️ Database Architecture
 
 ### Where is the data stored?

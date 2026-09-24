@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import {
   LayoutDashboard,
   Users,
@@ -105,6 +106,28 @@ export default function Sidebar() {
 }
 
 export function TopBar() {
+  const { user, signOut } = useAuth();
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
+  const getRoleLabel = (role: string) => {
+    const labels: Record<string, string> = {
+      super_admin: 'Super Admin',
+      admin: 'Admin',
+      leader: 'Team Leader',
+      manager: 'Manager',
+      employee: 'Employee',
+    };
+    return labels[role] || role;
+  };
+
   return (
     <header className="h-16 bg-white/80 backdrop-blur-xl border-b border-slate-200/80 flex items-center justify-between px-6 sticky top-0 z-40">
       <div className="flex items-center gap-4">
@@ -124,12 +147,19 @@ export function TopBar() {
         </button>
         <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
           <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md">
-            AK
+            {user ? getInitials(user.full_name) : 'U'}
           </div>
           <div className="hidden md:block">
-            <p className="text-sm font-semibold text-slate-700">Admin User</p>
-            <p className="text-[11px] text-slate-400">Branch Manager</p>
+            <p className="text-sm font-semibold text-slate-700">{user?.full_name || 'User'}</p>
+            <p className="text-[11px] text-slate-400">{user ? getRoleLabel(user.role) : 'Role'}</p>
           </div>
+          <button
+            onClick={signOut}
+            className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+            title="Sign Out"
+          >
+            <LogOut size={18} />
+          </button>
         </div>
       </div>
     </header>

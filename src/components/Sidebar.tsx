@@ -15,6 +15,8 @@ import {
   LogOut,
   Bell,
   Search,
+  Shield,
+  Network,
 } from 'lucide-react';
 
 const menuItems = [
@@ -25,6 +27,8 @@ const menuItems = [
   { path: '/tasks', label: 'Tasks', icon: CheckSquare },
   { path: '/campaigns', label: 'Campaigns', icon: Megaphone },
   { path: '/reports', label: 'Reports', icon: BarChart3 },
+  { path: '/users', label: 'User Management', icon: Shield },
+  { path: '/organization', label: 'Organization', icon: Network },
   { path: '/settings', label: 'Settings', icon: Settings },
 ];
 

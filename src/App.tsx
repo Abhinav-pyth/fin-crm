@@ -8,6 +8,8 @@ import Tasks from './pages/Tasks';
 import Campaigns from './pages/Campaigns';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
+import UsersPage from './pages/Users';
+import OrganizationPage from './pages/Organization';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/campaigns" element={<Campaigns />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/users" element={<UsersPage />} />
+              <Route path="/organization" element={<OrganizationPage />} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
           </main>

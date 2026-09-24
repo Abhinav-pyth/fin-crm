@@ -35,6 +35,24 @@ This creates all tables including:
 - `teams` - Team structures
 - `customers`, `leads`, `opportunities`, `tasks`, `campaigns`
 
+**Important:** The schema uses `SECURITY DEFINER` functions to avoid RLS recursion errors. If you had a previous version that caused the "infinite recursion" error, delete all existing tables and policies first, then re-run the schema.
+
+**To reset (if you had errors):**
+```sql
+-- Drop everything and start fresh
+DROP TABLE IF EXISTS activities CASCADE;
+DROP TABLE IF EXISTS campaigns CASCADE;
+DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS opportunities CASCADE;
+DROP TABLE IF EXISTS leads CASCADE;
+DROP TABLE IF EXISTS customers CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS teams CASCADE;
+DROP TABLE IF EXISTS departments CASCADE;
+DROP TABLE IF EXISTS organizations CASCADE;
+```
+Then re-run the schema from `src/data/schema.sql`.
+
 ---
 
 ### Step 3: Enable Email Auth

@@ -59,7 +59,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loadUserData = async (userId: string) => {
     try {
-      const userData = await db.users.getById(userId);
+      // First try to get user by ID
+      let userData = await db.users.getById(userId);
+      
+      // If not found by ID, the user might not be in the users table yet
+      // This can happen if they signed up but weren't added to the users table
+      if (!userData) {
+        console.warn('User not found in users table. They need to be added by an admin.');
+        setUser(null);
+        return;
+      }
+      
       setUser(userData);
     } catch (error) {
       console.error('Failed to load user data:', error);

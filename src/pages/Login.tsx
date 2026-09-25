@@ -29,12 +29,14 @@ export default function LoginPage() {
         }
       } else {
         const { error } = await signIn(email, password);
-        if (error) {
-          setError(error);
-        } else {
+      if (error) {
+        setError(error);
+      } else {
+        // Wait a bit for the auth context to load user data
+        setTimeout(() => {
           navigate('/');
-        }
-      }
+        }, 100);
+      }      }
     } catch (err) {
       setError('An unexpected error occurred');
     } finally {
